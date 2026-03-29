@@ -123,7 +123,7 @@ nav a:hover::before{
     height: 100vh;
     overflow: hidden;
     position: relative;
-    background-image: url(image/free\ fire\ hero\ image\ \(5\).jpg);
+    background-image: url("image/free\ fire\ hero\ image\ \(5\).jpg");
 	background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -168,34 +168,34 @@ nav a:hover::before{
 
 @keyframes change {
     0%{
-        background-image: url(image/free\ fire\ hero\ image\ \(5\).jpg);
+        background-image: url("image/free\ fire\ hero\ image\ \(5\).jpg");
         filter: brightness(100%);
         background-size: cover;
         background-position: center;
     }
     25% {
-        background-image: url(image/clash\ of\ clans\ hero\ image.jpg);
+        background-image: url("image/clash\ of\ clans\ hero\ image.jpg");
         filter: brightness(100%);
         background-size: cover;
         background-position: center;
     }
 
     50%{
-        background-image: url(image/call\ of\ duty\ hero\ image\ \(1\).jpg);
+        background-image: url("image/call\ of\ duty\ hero\ image\ \(1\).jpg");
         filter: brightness(100%);
         background-size: cover;
         background-position: center;
         
     }
     75%{
-        background-image: url(image/free\ fire\ hero\ image\ \(5\).jpg);
+        background-image: url("image/free\ fire\ hero\ image\ \(5\).jpg");
         filter: brightness(100%);
         background-size: cover;
         background-position: center;
     }
 
     100%{
-        background-image: url(image/clash\ of\ clans\ hero\ image.jpg);
+        background-image: url("image/clash\ of\ clans\ hero\ image.jpg");
         filter: brightness(100%);
         background-size: cover;
         background-position: center;
