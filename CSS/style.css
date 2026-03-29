@@ -1,0 +1,770 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;  
+}
+
+body{
+	background-color:#020617;   
+}
+
+nav {
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 10px;
+    position: relative; /* Keep nav as the anchor */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+nav a {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.05);
+    border: 1px solid rgba(255,255,255,0.2); 
+    padding: 10px;
+    border-radius: 25px;
+    position: relative;
+    display: inline-block;
+}
+nav a:hover {
+    box-shadow: 0px 0px 5px white;
+    transform: translateY(-5px);
+    transition: 0.5s;
+    color: #3eabf4;
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 5px;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition: all .5s;
+}
+
+nav a:hover::before{
+    width: 85%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.logo { position: absolute; left: 100px; }
+.logo img { width: 100px; }
+
+/* --- COMPACT HAMBURGER LOGIC --- */
+
+#check { display: none; }
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    display: none; /* Desktop hidden */
+    position: absolute;
+    right: 20px;
+}
+
+@media (max-width: 950px) {
+    /* Less padding on the main nav */
+    nav { padding: 30px; }
+
+    .checkbtn { display: block; }
+    .logo { left: 20px; }
+    .logo img { width: 60px; }
+
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Sits directly under the nav bar */
+        left: 0;
+        width: 100%;
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(15px);
+        display: none; /* Hidden until clicked */
+        flex-direction: column;
+        padding: 10px 0; /* Compact padding */
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* THE TOGGLE: Only show when checkbox is checked */
+    #check:checked ~ .nav-links {
+        display: flex;
+    }
+
+    /* Smaller, tighter buttons for mobile */
+    nav a {
+        margin: 5px 20px;
+        padding: 8px 15px; /* Less padding as requested */
+        border-radius: 10px;
+        text-align: left;
+        display: block;
+        background: none; /* Simplified for dropdown look */
+        border: none;
+        text-align: center;
+    }
+    nav a::before{
+        display: none;
+    }
+}
+
+.heroSection {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-image: url(/image/free\ fire\ hero\ image\ \(5\).jpg);
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    text-align: center;
+    animation: change 15s infinite ease-in-out;
+}
+
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-transform: uppercase;
+}
+
+.content h1{
+    color: #fff;
+    font-size: 80px;
+    letter-spacing: 35px;
+}
+
+.content h1 span{
+    color: whitesmoke;
+}
+
+.content a {
+    background-color: #85c1ee;
+    padding: 10px 24px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 20px;
+    color: black;
+}
+
+.content a:hover{
+    background-color: #034e88;
+    color: #fff;
+
+}
+
+@keyframes change {
+    0%{
+        background-image: url(/image/free\ fire\ hero\ image\ \(5\).jpg);
+        filter: brightness(100%);
+        background-size: cover;
+        background-position: center;
+    }
+    25% {
+        background-image: url(/image/clash\ of\ clans\ hero\ image.jpg);
+        filter: brightness(100%);
+        background-size: cover;
+        background-position: center;
+    }
+
+    50%{
+        background-image: url(/image/call\ of\ duty\ hero\ image\ \(1\).jpg);
+        filter: brightness(100%);
+        background-size: cover;
+        background-position: center;
+        
+    }
+    75%{
+        background-image: url(/image/free\ fire\ hero\ image\ \(5\).jpg);
+        filter: brightness(100%);
+        background-size: cover;
+        background-position: center;
+    }
+
+    100%{
+        background-image: url(/image/clash\ of\ clans\ hero\ image.jpg);
+        filter: brightness(100%);
+        background-size: cover;
+        background-position: center;
+        
+    }
+}
+
+/* about us */
+   /* LOOP CONTAINER */
+.loop-images {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+   /* CAROUSEL */
+.carousel-track {
+	--left: -300rem;
+	min-width: calc(10rem * var(--total));
+	height: 400px;
+    margin-top: 150px;
+    
+}
+
+.carousel-item {
+	position: absolute;
+	left: 100%;
+	width: 30rem;
+	height: 300px;
+	
+	display: flex;
+	justify-content: center;
+
+	perspective: 1000px;
+	transform-style: preserve-3d;
+
+	animation: scroll-left var(--time) linear infinite;
+	animation-delay: calc(var(--time) / var(--total) * (var(--i) - 1) - var(--time));
+
+	transition: 0.5s ease;
+	cursor: pointer;
+}
+
+/* Image inside carousel */
+.carousel-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+
+	background: white;
+	transform: rotateY(-45deg);
+	transition: 0.5s ease;
+
+	mask: linear-gradient(black 70%, transparent);
+}
+
+/* Hover effect */
+.carousel-item:hover img {
+	transform: rotateY(0deg) translateY(-1rem);
+	
+}
+
+/* Animation */
+@keyframes scroll-left {
+	to {
+		left: var(--left);
+	}
+}
+
+.aboutSection {
+	/* Other */
+	--radius: 25px;
+	--transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	padding: 6rem 2rem;
+	
+
+	background: var(--bg-color);
+	color: var(--text-white);
+}
+
+/* Container */
+.aboutSection .container {
+	max-width: 1200px;
+	width: 100%;
+	color: white;
+	text-align: center;
+    margin-top: -50px;
+}
+
+/* Subtitle */
+.subtitle {
+	font-size: 1.6rem;
+	color: var(--text-primary);
+	margin-bottom: 2rem;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-align: center;
+    font-size:25px;
+    gap:10px;
+}
+
+/* Text */
+.text {
+	max-width: 700px;
+	margin: auto;
+	margin-bottom: 2.5rem;
+
+	font-size: 18px;
+	line-height: 1.9;
+	color: var(--text-primary);
+}
+
+/* ================================
+   FEATURES GRID
+================================ */
+.features {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 2.5rem;
+	margin-top: 5rem;
+}
+
+/* Feature Card */
+.feature {
+	padding: 3.5rem 2.5rem;
+	border-radius: var(--radius);
+
+	background: rgba(255, 107, 107, 0.1);
+	border: 1px solid rgba(255, 107, 107, 0.3);
+
+	backdrop-filter: blur(20px);
+	transition: var(--transition);
+
+	text-align: center;
+	cursor: pointer;
+}
+
+/* Hover effect */
+.feature:hover {
+	transform: translateY(-10px) scale(1.02);
+	border-color: rgba(255, 107, 107, 0.6);
+}
+
+/* Icon */
+.feature-icon {
+	font-size: 3.5rem;
+	margin-bottom: 2rem;
+	transition: 0.3s;
+}
+
+.feature:hover .feature-icon {
+	transform: scale(1.1);
+}
+
+/* Title */
+.feature h3 {
+	font-size: 1.8rem;
+	margin-bottom: 1.5rem;
+}
+
+/* Text */
+.feature p {
+	font-size: 1.1rem;
+	color: var(--text-secondary);
+	line-height: 1.7;
+}
+
+
+.team-section {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 1. The Card Container */
+.card {
+    position: absolute;
+    width: 350px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    /* --- THE GRID FIX --- */
+    display: grid !important;
+    grid-template-rows: auto 1fr; /* Image gets top row, text gets bottom */
+    gap: 20px; /* Physical gap between rows */
+    align-items: start;
+}
+
+/* 2. The Image */
+.card img {
+    grid-row: 1; /* Forces image to stay in the first row */
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    display: block;
+    position: relative !important; /* Prevents it from floating */
+}
+
+/* 3. The Text Content Wrapper */
+.imageContent {
+    grid-row: 2; /* Forces text to stay in the second row */
+    text-align: left;
+    width: 100%;
+    position: relative !important;
+}
+
+.imageContent h3 {
+    margin: 0 0 8px 0 !important;
+    font-size: 1.5rem;
+    color: #000;
+    position: relative !important;
+}
+
+.imageContent p {
+    margin: 0 !important;
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.5;
+    position: relative !important;
+}
+
+/* --- Animation/Stacking States (Keep these as they are) --- */
+.card.active {
+    opacity: 1;
+    z-index: 10;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+}
+
+.card.prev-card {
+    opacity: 0.6;
+    z-index: 5;
+    transform: translateX(-120px) scale(0.85);
+}
+
+.card.next-card {
+    opacity: 0.6;
+    z-index: 5;
+    transform: translateX(120px) scale(0.85);
+}
+
+/* Navigation Buttons */
+.nav-btn {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.nav-btn:hover {
+    background: white;
+    color: #a020f0;
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .card { width: 300px; }
+    .card.prev-card { transform: translateX(-80px) scale(0.85); }
+    .card.next-card { transform: translateX(80px) scale(0.85); }
+}
+
+@media (max-width: 480px) {
+    .card { width: 260px; padding: 15px; }
+    .card img { height: 140px; }
+    .nav-btn { width: 40px; height: 40px; font-size: 16px; }
+}
+
+
+/* footer*/
+
+.custom-footer {
+    background-color: #10002b; /* Matches the image tone */
+    color: white;
+    padding: 60px 40px 20px 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 60px 60px 0 0; /* Creates the large top curves */
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+}
+
+.brand-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 50px 0;
+    opacity: 0.9;
+    max-width: 250px;
+}
+
+.contact-info{
+    margin-top: -40px;
+}
+
+.contact-info span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.footer-col h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    opacity: 1;
+    padding-left: 5px;
+}
+
+/* The light-colored box style from the image */
+.services-box {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 40px;
+    text-align: left;
+}
+
+.social-icons {
+    margin-top: 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* =================================================
+   RESPONSIVE MEDIA QUERIES 
+   ================================================= */
+
+/* 1. MOBILE VIEW (max-width: 600px) */
+@media screen and (max-width: 600px) {
+    /* Hero Section: Reduce text size and extreme spacing */
+    .content h1 {
+        font-size: 30px;
+        letter-spacing: 10px;
+    }
+
+    /* About Section: Reduce large padding/margins to fix white space */
+    .aboutSection {
+        padding: 3rem 1rem;
+    }
+    
+    .aboutSection .container {
+        margin-top: 0;
+    }
+
+    /* Carousel: Adjust size for small screens */
+    .carousel-track {
+        height: 250px;
+        margin-top: 50px;
+        display: none;
+    }
+    
+    .carousel-item {
+        width: 18rem;
+        height: 200px;
+    }
+
+    /* Features: Ensure they stack nicely */
+    .features {
+        grid-template-columns: 1fr;
+        margin-top: 3rem;
+        gap: 1.5rem;
+    }
+
+    /* Team Section: Stack cards vertically */
+    .team-grid {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+
+    .team-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Footer: Fix spacing and alignment */
+    .custom-footer {
+        padding: 40px 20px;
+        border-radius: 40px 40px 0 0;
+        text-align: center;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-col {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .brand-col p {
+        margin: 20px auto;
+        max-width: 100%;
+    }
+
+    .contact-info {
+        margin-top: 0; /* Fixes overlap from negative desktop margin */
+    }
+
+    .services-box {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* 2. TABLET VIEW (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    /* Adjust Hero for tablets */
+    .content h1 {
+        font-size: 45px;
+        letter-spacing: 20px;
+    }
+
+    /* Adjust Team Grid spacing */
+    .team-grid {
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* Allow footer columns to sit 2x2 if space permits */
+    .footer-col {
+        flex: 1 1 40%;
+    }
+}
+
+/* =================================================
+    DESKTOP RESPONSIVENESS (Max-width: 1200px)
+   ================================================= */
+
+@media screen and (min-width: 1201px) {
+    /* Main container constraint */
+    .aboutSection .container,
+    .team-grid,
+    .footer-container {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 40px; /* Extra breathing room on very large screens */
+    }
+
+    /* Prevent Hero content from stretching to screen edges */
+    .heroSection .content {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    /* Ensure elements don't touch the screen edges on smaller desktops */
+    .aboutSection, 
+    .team-section, 
+    .custom-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .container, 
+    .footer-container {
+        width: 100%;
+        max-width: 1100px; /* Slight scale down for 1200px screens */
+        margin: 0 auto;
+    }
+
+    /* Adjust features grid for better fit */
+    .features {
+        gap: 1.5rem;
+    }
+
+    /* Ensure team grid doesn't get squashed */
+    .team-grid {
+        gap: 30px;
+    }
+}

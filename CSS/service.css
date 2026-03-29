@@ -1,0 +1,644 @@
+
+body{
+    font-family: Arial, Helvetica, sans-serif; 
+    margin:0;
+    padding: 0;
+    background:#10002b;
+}
+
+nav {
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 10px;
+    position: relative; /* Keep nav as the anchor */
+}
+nav a {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.05);
+    border: 1px solid rgba(255,255,255,0.2); 
+    padding: 10px;
+    border-radius: 25px;
+    position: relative;
+    display: inline-block;
+}
+nav a:hover {
+    box-shadow: 0px 0px 5px white;
+    transform: translateY(-5px);
+    transition: 0.5s;
+    color: #3eabf4;
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 5px;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition: all .5s;
+}
+
+nav a:hover::before{
+    width: 85%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.logo { position: absolute; left: 100px; }
+.logo img { width: 100px; }
+
+/* --- COMPACT HAMBURGER LOGIC --- */
+
+#check { display: none; }
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    display: none; /* Desktop hidden */
+    position: absolute;
+    right: 20px;
+}
+
+@media (max-width: 950px) {
+    /* Less padding on the main nav */
+    nav { padding: 30px; }
+
+    .checkbtn { display: block; }
+    .logo { left: 20px; }
+    .logo img { width: 60px; }
+
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Sits directly under the nav bar */
+        left: 0;
+        width: 100%;
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(15px);
+        display: none; /* Hidden until clicked */
+        flex-direction: column;
+        padding: 10px 0; /* Compact padding */
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* THE TOGGLE: Only show when checkbox is checked */
+    #check:checked ~ .nav-links {
+        display: flex;
+    }
+
+    /* Smaller, tighter buttons for mobile */
+    nav a {
+        margin: 5px 20px;
+        padding: 8px 15px; /* Less padding as requested */
+        border-radius: 10px;
+        text-align: left;
+        display: block;
+        background: none; /* Simplified for dropdown look */
+        border: none;
+        text-align: center;
+    }
+    nav a::before{
+        display: none;
+    }
+}
+
+/* title */
+
+.head2{
+    text-align:center;
+    padding:30px;
+    font-size:35px;
+    font-weight:bold;
+    color:white;
+
+}
+
+/* main section */
+
+.service-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:50px;
+    padding:30px;
+    flex-wrap:wrap;
+    color: white;
+}
+
+/* left services */
+
+.service-list{
+    display: flex;
+    justify-content: center;
+     
+}
+
+.service{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+    padding:15px;
+    border-radius:10px;
+    transition:0.3s;
+    cursor:pointer;
+    text-align: center;
+}
+
+.service:hover{
+    background:white;
+    /* transform:translateX(8px); */
+    transform: scale(1.01);
+    transition: 1s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    color: black;
+}
+
+.icon{
+    margin-top: 30px;
+    font-size:28px;
+}
+
+
+/* process-card */
+
+/* .container{
+    padding: 20px;
+    width: 95%;
+} */
+
+.card-container{
+    width: 95%;
+    height: 70vh;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-container .card-Process{
+    width: 23%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px gray;
+    /* height: 30vh; */
+    /* margin: 10px; */
+    background-color: black;
+    text-align: center;
+    color: white;
+    height: 420px;
+}
+.card-Process img{
+    display: block;
+    margin: 0% auto;
+    width: 80%;
+    /* height: 00px; */
+}
+.process img{
+    display: block;
+    margin: 0% auto;
+    width: 73%;
+    /* height: 80px; */
+}
+
+.card-container .card-Process:hover{
+    transform: scale(1.03);
+    transition: 1s;
+    cursor: pointer;
+}
+
+
+
+/* review process */
+.container {
+  margin: 10px auto;
+  width: 400px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 18px;
+  color:white;
+}
+
+.fa-star {
+ font-size: 25px;
+  margin-top: 10px;
+  color: white;
+}
+
+/* another card */
+.testimonial {
+    padding: 60px 20px;
+}
+
+.testimonial h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    width: 220px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px lightgray;
+    text-align: center;
+    height: 200px;
+}
+
+.card img {
+    width: 80px;
+    border-radius: 50%;
+}
+
+.card h3 {
+    margin: 10px 0 5px;
+}
+
+.stars {
+    color: gold;
+    font-size: 18px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.rating-box {
+    background: #fff;
+    margin: 40px auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.big-stars {
+    color: gold;
+    font-size: 22px;
+}
+
+
+/* last review */
+.stars {
+    color: gold;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+.rating-box {
+    background: #fff;
+    margin: 40px auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px lightgray;
+    text-align: center;
+}
+
+.big-stars {
+    color: gold;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* footer*/
+
+.custom-footer {
+    background-color: #10002b; /* Matches the image tone */
+    color: white;
+    padding: 60px 40px 20px 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 60px 60px 0 0; /* Creates the large top curves */
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+}
+
+.brand-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 50px 0;
+    opacity: 0.9;
+    max-width: 250px;
+}
+
+.contact-info{
+    margin-top: -40px;
+}
+
+.contact-info span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.footer-col h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    opacity: 1;
+    padding-left: 5px;
+}
+
+/* The light-colored box style from the image */
+.services-box {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 40px;
+    text-align: left;
+}
+
+.social-icons {
+    margin-top: 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* =================================================
+   RESPONSIVE MEDIA QUERIES (Fixed)
+   ================================================= */
+
+@media (max-width: 768px) {
+    /* Hero */
+    .content h1 {
+        font-size: 40px;
+        letter-spacing: 15px;
+    }
+
+    /* Team Grid - 2 columns for tablet */
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+
+    /* FIX: Adjusted width for tablet so they don't look squeezed */
+    .card-container {
+        /* flex-wrap: wrap; */
+        gap: 20px;
+        /* flex-direction: column; */
+        height: auto;
+        padding: 20px;
+    }
+
+    .card-container .card-Process {
+        width: 55%; /* Two cards per row on tablets */
+        height: auto;
+        min-height: 350px;
+    }
+
+    /* Footer - 2 columns side-by-side */
+    .footer-col {
+        flex: 1 1 45%;
+    }
+}
+
+/* =================================================
+    CONSOLIDATED RESPONSIVE FIX
+   ================================================= */
+
+@media (max-width: 600px) {
+    .service-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers service items vertically */
+    }
+
+    /* Fix Card Container for Phone */
+    .card-container {
+        flex-direction: column;
+        height: auto; 
+        width: 100%;
+        padding: 20px 0; /* Removed side padding to prevent overflow */
+        gap: 20px;
+        align-items: center; /* Crucial for centering flex children */
+    }
+
+    /* FIX: Ensure cards take full width on phones and are centered */
+    .card-container .card-Process {
+        width: 85%; 
+        margin: 0 auto; /* Force horizontal centering */
+        height: auto;
+        min-height: 300px;
+    }
+
+    .cards {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0; /* REMOVED the 30px padding that was causing off-center look */
+        width: 100%;
+    }
+
+    /* FIX: Ensure testimonial cards are centered */
+    .card {
+        width: 80%;
+        height: auto;
+        margin: 10px auto; /* Centers the card in the column */
+    }
+
+    .rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .rating-box {
+        width: 80%;
+        margin: 20px auto; /* Centered with auto margins */
+    } 
+
+    /* Arrows point down on mobile */
+    .card-container .fa-angles-right {
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+
+    /* Footer: Fix spacing and alignment */
+    .custom-footer {
+        padding: 40px 20px;
+        border-radius: 40px 40px 0 0;
+        text-align: center;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-col {
+        width: 100%;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers ULs and text inside columns */
+    }
+
+    .brand-col p {
+        margin: 20px auto;
+        max-width: 100%;
+    }
+
+    .contact-info {
+        margin-top: 0; 
+    }
+
+    .services-box {
+        text-align: center;
+        padding: 20px;
+        width: 90%; /* Keeps the box from touching edges */
+    }
+
+    .social-icons {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* =================================================
+    DESKTOP VIEW (1200px and above)
+   ================================================= */
+
+@media (min-width: 1200px) {
+    /* 1. Reset Service List to Horizontal */
+    .service-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .service {
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    /* 2. Process Cards: 3 Steps in a Row */
+    .card-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 70vh; 
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .card-container .card-Process {
+        width: 23%;
+        height: 420px;
+    }
+
+    /* Reset Arrows to point right */
+    .card-container .fa-angles-right {
+        transform: rotate(0deg);
+        margin: 0 15px;
+    }
+
+    /* 3. Review Cards Horizontal Alignment */
+    .cards {
+        flex-direction: row;
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    .card {
+        width: 220px;
+        margin: 0;
+    }
+
+    /* 4. Footer Column Reset */
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .footer-col {
+        width: auto;
+        margin-bottom: 0;
+    }
+
+    .brand-col p {
+        margin: 50px 0;
+        text-align: left;
+    }
+
+    .services-box {
+        text-align: left;
+    }
+
+    .social-icons {
+        justify-content: flex-start;
+    }
+}

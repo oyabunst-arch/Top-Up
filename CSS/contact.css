@@ -1,0 +1,528 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;  
+}
+
+body{
+	background-color: #020617;
+}
+
+nav {
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    /* padding: 10px; */
+    position: relative; /* Keep nav as the anchor */
+}
+nav a {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.05);
+    border: 1px solid rgba(255,255,255,0.2); 
+    padding: 10px;
+    border-radius: 25px;
+    position: relative;
+    display: inline-block;
+}
+nav a:hover {
+    box-shadow: 0px 0px 5px white;
+    transform: translateY(-5px);
+    transition: 0.5s;
+    color: #3eabf4;
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 5px;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition: all .5s;
+}
+
+nav a:hover::before{
+    width: 85%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.logo { position: absolute; left: 100px; }
+.logo img { width: 100px; }
+
+/* --- COMPACT HAMBURGER LOGIC --- */
+
+#check { display: none; }
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    display: none; /* Desktop hidden */
+    position: absolute;
+    right: 20px;
+}
+
+@media (max-width: 950px) {
+    /* Less padding on the main nav */
+    nav { padding: 30px; }
+
+    .checkbtn { display: block; }
+    .logo { left: 20px; }
+    .logo img { width: 60px; }
+
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Sits directly under the nav bar */
+        left: 0;
+        width: 100%;
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(15px);
+        display: none; /* Hidden until clicked */
+        flex-direction: column;
+        padding: 10px 0; /* Compact padding */
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* THE TOGGLE: Only show when checkbox is checked */
+    #check:checked ~ .nav-links {
+        display: flex;
+    }
+
+    /* Smaller, tighter buttons for mobile */
+    nav a {
+        margin: 5px 20px;
+        padding: 8px 15px; /* Less padding as requested */
+        border-radius: 10px;
+        text-align: left;
+        display: block;
+        background: none; /* Simplified for dropdown look */
+        border: none;
+        text-align: center;
+    }
+    nav a::before{
+        display: none;
+    }
+}
+
+
+.landing {
+    text-align: center;
+    padding:50px;
+    height: 50vh;
+    background:url('https://i.pinimg.com/736x/e7/91/6d/e7916d773eb1d6db52b15ea52bd17233.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+ 
+}
+.landing h2{
+    opacity: 0;
+    animation: fadeIn 3s forwards;
+    font-size:50px;
+    color: white;
+    margin-top: 150px;
+   
+}
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.main-container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+/* Info Cards Styling */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: 0.3s;
+    color: white;
+}
+
+.icon {
+    margin: 0 auto;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    background: rgba(34, 211, 238, 0.1);
+}
+
+.info-card h4 { color: #22d3ee; margin: 10px 0; }
+
+/* Map Styling */
+.map-container {
+    width: 100%;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: white;
+    margin:20px 0 0;
+    filter: grayscale(1) invert(0.9) contrast(1.2); /* Makes map look "Gaming/Dark" */
+}
+
+/* Form Styling */
+.form-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-container h2 {
+    color: white   ;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: #94a3b8; }
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.input-group input:focus { border-color: #22d3ee; }
+
+.submit-btn {
+    background: #22d3ee;
+    color: #0f172a;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+.error-msg { color: #f87171; font-size: 0.75rem; display: block; margin-top: 5px; }
+
+.status-box { margin-top: 20px; text-align: center; font-weight: bold; }
+.status-success { color: #4ade80; }
+
+
+/* footer*/
+
+.custom-footer {
+    background-color: #10002b; /* Matches the image tone */
+    color: white;
+    padding: 60px 40px 20px 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 60px 60px 0 0; /* Creates the large top curves */
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+}
+
+.brand-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 50px 0;
+    opacity: 0.9;
+    max-width: 250px;
+}
+
+.contact-info{
+    margin-top: -40px;
+}
+
+.contact-info span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.footer-col h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    opacity: 1;
+    padding-left: 5px;
+}
+
+/* The light-colored box style from the image */
+.services-box {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 40px;
+    text-align: left;
+}
+
+.social-icons {
+    margin-top: 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* =================================================
+   1. PHONE VIEW (max-width: 600px)
+   ================================================= */
+@media screen and (max-width: 600px) {
+    /* Adjust landing header height and text */
+    .landing {
+        height: 40vh;
+        padding: 20px;
+    }
+
+    .landing h2 {
+        font-size: 32px;
+        margin-top: 100px;
+    }
+
+    /* Main Container Padding */
+    .main-container {
+        width: 90%;
+        margin-top: 20px;
+        padding-bottom: 30px;
+    }
+
+    /* Info Cards - Stack vertically */
+    .info-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr; 
+        gap: 15px;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    /* Form - Stack input rows */
+    .form-container {
+        padding: 20px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr; /* Stack Name and Email */
+        gap: 0;
+    }
+
+    /* Map - Adjust height for smaller screens */
+    .map-container {
+        height: 250px;
+        margin-top: 20px;
+    }
+
+    /* Footer - Full width columns and fix overlap */
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-col {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .brand-col p {
+        margin: 20px auto;
+    }
+
+    .contact-info {
+        margin-top: 0; /* Fixes the negative margin overlap */
+    }
+
+    .services-box {
+        text-align: center;
+        padding: 20px 0 ;
+    }
+}
+
+/* =================================================
+   2. TABLET VIEW (max-width: 768px)
+   ================================================= */
+@media screen and (max-width: 768px) {
+    /* Maintain 2 columns for info cards on tablets */
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* Adjust main container width */
+    .main-container {
+        max-width: 90%;
+    }
+
+    /* Footer - 2 columns side by side */
+    .footer-col {
+        flex: 1 1 45%;
+    }
+    
+    .landing h2 {
+        font-size: 42px;
+    }
+}
+
+/* =================================================
+    DESKTOP VIEW (1200px and above)
+   ================================================= */
+@media screen and (min-width: 1200px) {
+    /* Stabilize the overall width */
+    .main-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* Info Cards: 3 columns in one row */
+    .info-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    /* Landing header: Restore height and font size */
+    .landing {
+        height: 60vh;
+    }
+
+    .landing h2 {
+        font-size: 60px;
+        margin-top: 180px;
+    }
+
+    /* Form: Keep inputs side-by-side */
+    .input-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    /* Map: Increased height for desktop visibility */
+    .map-container {
+        height: 450px;
+        margin-bottom: 50px;
+    }
+
+    /* Footer: Multi-column alignment */
+    .footer-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: nowrap; /* Forces all 4 columns into one row */
+    }
+
+    .footer-col {
+        flex: 1;
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    /* Reset footer brand column margins for desktop */
+    .brand-col p {
+        margin: 50px 0;
+        text-align: left;
+    }
+
+    .services-box {
+        text-align: left;
+        padding: 30px;
+    }
+
+    .social-icons {
+        justify-content: flex-start;
+    }
+}

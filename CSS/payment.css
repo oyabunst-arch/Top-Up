@@ -1,0 +1,583 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;  
+}
+
+body{
+	background-color: #020617;
+    color: white;
+}
+
+nav {
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 10px;
+    position: relative; /* Keep nav as the anchor */
+}
+nav a {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.05);
+    border: 1px solid rgba(255,255,255,0.2); 
+    padding: 10px;
+    border-radius: 25px;
+    position: relative;
+    display: inline-block;
+}
+nav a:hover {
+    box-shadow: 0px 0px 5px white;
+    transform: translateY(-5px);
+    transition: 0.5s;
+    color: #3eabf4;
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 5px;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition: all .5s;
+}
+
+nav a:hover::before{
+    width: 85%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.logo { position: absolute; left: 100px; }
+.logo img { width: 100px; }
+
+/* --- COMPACT HAMBURGER LOGIC --- */
+
+#check { display: none; }
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    display: none; /* Desktop hidden */
+    position: absolute;
+    right: 20px;
+}
+
+@media (max-width: 950px) {
+    /* Less padding on the main nav */
+    nav { padding: 30px; }
+
+    .checkbtn { display: block; }
+    .logo { left: 20px; }
+    .logo img { width: 60px; }
+
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Sits directly under the nav bar */
+        left: 0;
+        width: 100%;
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(15px);
+        display: none; /* Hidden until clicked */
+        flex-direction: column;
+        padding: 10px 0; /* Compact padding */
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* THE TOGGLE: Only show when checkbox is checked */
+    #check:checked ~ .nav-links {
+        display: flex;
+    }
+
+    /* Smaller, tighter buttons for mobile */
+    nav a {
+        margin: 5px 20px;
+        padding: 8px 15px; /* Less padding as requested */
+        border-radius: 10px;
+        text-align: left;
+        display: block;
+        background: none; /* Simplified for dropdown look */
+        border: none;
+        text-align: center;
+    }
+    nav a::before{
+        display: none;
+    }
+}
+
+
+/* TOP & PAYMENT */
+
+/* Glassmorphism Container */
+.cont {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 40px; /* Increased padding for breathing room */
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    box-shadow: 0 0 30px rgba(160, 32, 240, 0.4);
+    width: 100%;
+    max-width: 500px; /* Slightly narrower for better focus */
+    color: white;
+    margin: 0 auto;
+}
+
+/* Typography Hierarchy */
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7); /* Subtle color for sub-headers */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+/* Field Spacing */
+p {
+    margin-bottom: 18px; /* More space between fields */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Refined Inputs */
+.input, textarea {
+    width: 90%;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px; /* Slightly less round for a modern look */
+    color: white;
+    margin-top: 8px; /* Separates label from input */
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.input:focus, textarea:focus {
+    border-color: #8a2be2;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+}
+
+fieldset {
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 25px 0;
+    padding: 20px;
+}
+
+legend {
+    padding: 0 10px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Radio Button Group Spacing */
+fieldset p {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 0;
+    color: white;
+    font-weight: normal;
+}
+
+/* The Button Area */
+.textDiv {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.cont a {
+    display: block; /* Makes the whole area clickable */
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 15px;
+    background: #8a2be2;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+}
+
+.cont a:hover {
+    background-color: #a020f0;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+}
+
+.textDiv button {
+    border-radius: 20px;
+    padding: 10px;
+}
+
+
+/* For topup html */
+
+/* For Input and select Game */
+.topup input {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;  
+    
+}
+#gameSelect {
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    
+}
+
+/* section */
+.topup{
+text-align:center;
+padding:40px;
+}
+
+/* id and select game */
+.inputSelect {
+    margin-top: 70px;
+    padding: 20px;
+}
+
+#playerID {
+    margin-right: 50px;
+}
+
+/* cards */
+.packages{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:20px;
+flex-wrap:wrap;
+}
+
+.package{
+background:#1e293b;
+border-radius:10px;
+width:150px;
+text-align:center;
+border:1px solid #ccc;
+height: 150px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.package h3,p,a {
+    margin-top: 10px;
+}
+
+/*anchor tag */
+.package a {
+    padding: 7px;
+    background-color: #3eabf4;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+
+.p1{
+    background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url("/image/mobile\ legend\ diamond.jpg");
+    background-size:cover;
+    background-position:center;
+    padding:20px;
+    border-radius:10px;
+    width:150px;
+    text-align:center;
+}
+
+.p2{
+    background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url("/image/UC.jpg");
+    background-size:cover;
+    background-position:center;
+    padding:20px;
+    border-radius:10px;
+    width:150px;
+    text-align:center;
+}
+
+.p3{
+    background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url(/image/Diamond\ Free\ fire.jpg);
+    background-size:cover;
+    background-position:center;
+    padding:20px;
+    border-radius:10px;
+    width:150px;
+    text-align:center;
+}
+.p4{
+    background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url("/image/clash\ of\ clans\ gems.jpg");
+    background-size:cover;
+    background-position:center;
+    padding:20px;
+    border-radius:10px;
+    width:150px;
+    text-align:center;
+}
+.p5{
+    background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url("/image/Call\ of\ duty\ PC.jpg");
+    background-size:cover;
+    background-position:center;
+    padding:20px;
+    border-radius:10px;
+    width:150px;
+    text-align:center;
+    /* border:1px solid #ccc; */
+}
+
+
+
+/* footer*/
+
+.custom-footer {
+    background-color: #10002b;
+    color: white;
+    padding: 60px 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 60px 60px 0 0;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 220px;
+}
+
+/* .brand-col {
+    text-align: center;
+} */
+
+.brand-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 20px 0;
+    opacity: 0.9;
+}
+
+.contact-info span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.footer-col h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    opacity: 1;
+    padding-left: 5px;
+}
+
+.services-box {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 25px;
+    border-radius: 30px;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 13px;
+    opacity: 0.7;
+}
+/* --- YOUR ORIGINAL CODE ENDS HERE --- */
+
+/* =========================================
+   ADDITIONS: RESPONSIVE MEDIA QUERIES
+   ========================================= */
+
+/* 1. PHONE VIEW (max-width: 600px) */
+@media screen and (max-width: 600px) {
+    .cont {
+        width: 95%; /* Adjusts width to prevent touching screen edges */
+        padding: 20px; /* Reduces white space for smaller screens */
+    }
+
+    h1 {
+        font-size: 22px; /* Scales down title */
+        letter-spacing: 1px;
+    }
+
+    .inputSelect {
+        margin-top: 30px; /* Reduces large top white space */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #playerID {
+        margin-right: 0; /* Removes side margin for centered stacking */
+    }
+
+    fieldset p {
+        flex-direction: column; /* Stacks radio buttons for easier tapping */
+        gap: 10px;
+    }
+
+    .custom-footer {
+        padding: 40px 20px;
+        border-radius: 30px 30px 0 0; /* Softens the curve for mobile */
+    }
+
+    .services-box {
+        display: block;
+        padding: 20px 0;
+    }
+}
+
+/* 2. TABLET VIEW (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer-col {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .brand-col p {
+        margin: 20px auto; /* Centers the description text */
+    }
+
+    .brand-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contact-info {
+        margin-top: 10px;
+    }
+
+    .services-box {
+        text-align: center; /* Centers the 'Most Top-up Games' section */
+    }
+    .input, textarea{
+        width: 90%;
+    }
+}
+
+/* =========================================
+   3. DESKTOP VIEW (min-width: 1201px)
+   ========================================= */
+@media screen and (min-width: 1201px) {
+    /* Main container constraints for Top-up & Payment */
+    .topup, 
+    .cont, 
+    .footer-container {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        /* Ensures elements don't touch screen edges */
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Prevent the Payment Glassmorphism box from getting too wide */
+    .cont {
+        max-width: 600px; /* Optimal reading width for forms */
+        padding: 50px;    /* Extra breathing room for desktop */
+    }
+
+    /* Ensure the package grid remains centered and tidy */
+    .packages {
+        max-width: 1100px;
+        margin: 20px auto 0;
+        gap: 40px; /* Increased gap for larger displays */
+    }
+
+    /* Ensure the footer columns don't stretch too thin */
+    .footer-col {
+        flex: 1;
+        min-width: 250px;
+    }
+}
+
+/* Global adjustment to ensure no element is forced to 100% viewport width */
+.topup, .cont, .custom-footer {
+    box-sizing: border-box;
+}
